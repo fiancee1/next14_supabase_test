@@ -1,7 +1,8 @@
 import '@/app/globals.css'
 import { Inter as FontSans } from 'next/font/google'
-
+import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
+import Navbar from '@/components/Navbar'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -31,9 +32,15 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <main className='min-h-screen flex flex-col items-center'>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
           {children}
-        </main>
+        </ThemeProvider>
       </body>
     </html>
   )
